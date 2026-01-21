@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Cybersecurity Theme - Dark & Tech-focused */
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Deep space/cyber darks */
+  --background: 224 71% 4%;
+  --foreground: 213 31% 91%;
+
+  /* Electric Cyan Primary */
+  --primary: 180 100% 50%;
+  --primary-foreground: 224 71% 4%;
+
+  /* Tech Blue Secondary */
+  --secondary: 217 91% 60%;
+  --secondary-foreground: 210 40% 98%;
+
+  /* Muted tech grays */
+  --muted: 223 47% 11%;
+  --muted-foreground: 215 20% 65%;
+
+  /* Deep Purple Accent */
+  --accent: 265 89% 66%;
+  --accent-foreground: 210 40% 98%;
+
+  /* Alert/Danger */
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 210 40% 98%;
+
+  /* Borders & Inputs */
+  --border: 216 34% 17%;
+  --input: 216 34% 17%;
+  --ring: 180 100% 50%;
+
+  /* Card backgrounds */
+  --card: 224 71% 6%;
+  --card-foreground: 213 31% 91%;
+
+  --radius: 0.75rem;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-primary/30 selection:text-primary-foreground;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    @apply font-bold tracking-tight text-white;
+  }
+}
+
+/* Custom Scrollbar for that tech feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-muted rounded-full hover:bg-muted-foreground/50 transition-colors;
+}
+
+/* Glassmorphism utilities */
+.glass-panel {
+  @apply bg-card/50 backdrop-blur-xl border border-white/5 shadow-2xl shadow-black/40;
+}
+
+.input-glow:focus {
+  @apply ring-2 ring-primary/50 border-primary shadow-[0_0_15px_rgba(45,212,191,0.3)];
+}
+
+/* Scanner Animation */
+@keyframes scan {
+  0% { transform: translateY(-100%); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+.scanner-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(to right, transparent, hsl(var(--primary)), transparent);
+  box-shadow: 0 0 20px 4px rgba(45, 212, 191, 0.4);
+  z-index: 100;
+  pointer-events: none;
+  animation: scan 4s linear infinite;
+}
